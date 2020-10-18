@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="simplechat" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.klib"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.15" value="${jdk.home.15}/bin"/>
+  <path id="jdk.classpath.15">
+    <fileset dir="${jdk.home.15}">
+      <include name="../openjdk-15!/java.base"/>
+      <include name="../openjdk-15!/java.compiler"/>
+      <include name="../openjdk-15!/java.datatransfer"/>
+      <include name="../openjdk-15!/java.desktop"/>
+      <include name="../openjdk-15!/java.instrument"/>
+      <include name="../openjdk-15!/java.logging"/>
+      <include name="../openjdk-15!/java.management"/>
+      <include name="../openjdk-15!/java.management.rmi"/>
+      <include name="../openjdk-15!/java.naming"/>
+      <include name="../openjdk-15!/java.net.http"/>
+      <include name="../openjdk-15!/java.prefs"/>
+      <include name="../openjdk-15!/java.rmi"/>
+      <include name="../openjdk-15!/java.scripting"/>
+      <include name="../openjdk-15!/java.se"/>
+      <include name="../openjdk-15!/java.security.jgss"/>
+      <include name="../openjdk-15!/java.security.sasl"/>
+      <include name="../openjdk-15!/java.smartcardio"/>
+      <include name="../openjdk-15!/java.sql"/>
+      <include name="../openjdk-15!/java.sql.rowset"/>
+      <include name="../openjdk-15!/java.transaction.xa"/>
+      <include name="../openjdk-15!/java.xml"/>
+      <include name="../openjdk-15!/java.xml.crypto"/>
+      <include name="../openjdk-15!/jdk.accessibility"/>
+      <include name="../openjdk-15!/jdk.aot"/>
+      <include name="../openjdk-15!/jdk.attach"/>
+      <include name="../openjdk-15!/jdk.charsets"/>
+      <include name="../openjdk-15!/jdk.compiler"/>
+      <include name="../openjdk-15!/jdk.crypto.cryptoki"/>
+      <include name="../openjdk-15!/jdk.crypto.ec"/>
+      <include name="../openjdk-15!/jdk.dynalink"/>
+      <include name="../openjdk-15!/jdk.editpad"/>
+      <include name="../openjdk-15!/jdk.hotspot.agent"/>
+      <include name="../openjdk-15!/jdk.httpserver"/>
+      <include name="../openjdk-15!/jdk.incubator.foreign"/>
+      <include name="../openjdk-15!/jdk.incubator.jpackage"/>
+      <include name="../openjdk-15!/jdk.internal.ed"/>
+      <include name="../openjdk-15!/jdk.internal.jvmstat"/>
+      <include name="../openjdk-15!/jdk.internal.le"/>
+      <include name="../openjdk-15!/jdk.internal.opt"/>
+      <include name="../openjdk-15!/jdk.internal.vm.ci"/>
+      <include name="../openjdk-15!/jdk.internal.vm.compiler"/>
+      <include name="../openjdk-15!/jdk.internal.vm.compiler.management"/>
+      <include name="../openjdk-15!/jdk.jartool"/>
+      <include name="../openjdk-15!/jdk.javadoc"/>
+      <include name="../openjdk-15!/jdk.jcmd"/>
+      <include name="../openjdk-15!/jdk.jconsole"/>
+      <include name="../openjdk-15!/jdk.jdeps"/>
+      <include name="../openjdk-15!/jdk.jdi"/>
+      <include name="../openjdk-15!/jdk.jdwp.agent"/>
+      <include name="../openjdk-15!/jdk.jfr"/>
+      <include name="../openjdk-15!/jdk.jlink"/>
+      <include name="../openjdk-15!/jdk.jshell"/>
+      <include name="../openjdk-15!/jdk.jsobject"/>
+      <include name="../openjdk-15!/jdk.jstatd"/>
+      <include name="../openjdk-15!/jdk.localedata"/>
+      <include name="../openjdk-15!/jdk.management"/>
+      <include name="../openjdk-15!/jdk.management.agent"/>
+      <include name="../openjdk-15!/jdk.management.jfr"/>
+      <include name="../openjdk-15!/jdk.naming.dns"/>
+      <include name="../openjdk-15!/jdk.naming.rmi"/>
+      <include name="../openjdk-15!/jdk.net"/>
+      <include name="../openjdk-15!/jdk.nio.mapmode"/>
+      <include name="../openjdk-15!/jdk.sctp"/>
+      <include name="../openjdk-15!/jdk.security.auth"/>
+      <include name="../openjdk-15!/jdk.security.jgss"/>
+      <include name="../openjdk-15!/jdk.unsupported"/>
+      <include name="../openjdk-15!/jdk.unsupported.desktop"/>
+      <include name="../openjdk-15!/jdk.xml.dom"/>
+      <include name="../openjdk-15!/jdk.zipfs"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.15}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.15}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.15"/>
+  
+  
+  <!-- Global Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module simplechat -->
+  
+  <dirname property="module.simplechat.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.simplechat" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.simplechat" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.simplechat" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.simplechat" value="-encoding UTF-8 -source 15 -target 15 ${compiler.args}"/>
+  
+  <property name="simplechat.output.dir" value="${module.simplechat.basedir}/out/production/simplechat"/>
+  <property name="simplechat.testoutput.dir" value="${module.simplechat.basedir}/out/test/simplechat"/>
+  
+  <path id="simplechat.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="simplechat.module.production.classpath">
+    <path refid="${module.jdk.classpath.simplechat}"/>
+  </path>
+  
+  <path id="simplechat.runtime.production.module.classpath">
+    <pathelement location="${simplechat.output.dir}"/>
+  </path>
+  
+  <path id="simplechat.module.classpath">
+    <path refid="${module.jdk.classpath.simplechat}"/>
+    <pathelement location="${simplechat.output.dir}"/>
+  </path>
+  
+  <path id="simplechat.runtime.module.classpath">
+    <pathelement location="${simplechat.testoutput.dir}"/>
+    <pathelement location="${simplechat.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.simplechat">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.simplechat">
+    <patternset refid="excluded.from.module.simplechat"/>
+  </patternset>
+  
+  <path id="simplechat.module.sourcepath">
+    <dirset dir="${module.simplechat.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.simplechat" depends="compile.module.simplechat.production,compile.module.simplechat.tests" description="Compile module simplechat"/>
+  
+  <target name="compile.module.simplechat.production" description="Compile module simplechat; production classes">
+    <mkdir dir="${simplechat.output.dir}"/>
+    <javac destdir="${simplechat.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.simplechat}/javac">
+      <compilerarg line="${compiler.args.simplechat}"/>
+      <bootclasspath refid="simplechat.module.bootclasspath"/>
+      <classpath refid="simplechat.module.production.classpath"/>
+      <src refid="simplechat.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simplechat"/>
+    </javac>
+    
+    <copy todir="${simplechat.output.dir}">
+      <fileset dir="${module.simplechat.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.simplechat.tests" depends="compile.module.simplechat.production" description="compile module simplechat; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.simplechat" description="cleanup module">
+    <delete dir="${simplechat.output.dir}"/>
+    <delete dir="${simplechat.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.simplechat" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.simplechat" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

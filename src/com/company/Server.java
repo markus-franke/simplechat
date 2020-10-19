@@ -23,7 +23,7 @@ public class Server {
         assert inetAddress != null;
     }
 
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException {
         ServerSocket serverSocket = new ServerSocket(port, 0, inetAddress);
         String ip = serverSocket.getInetAddress().getHostAddress();
         int port = serverSocket.getLocalPort();
@@ -35,20 +35,7 @@ public class Server {
             Socket clientSocket = serverSocket.accept();
             System.out.printf("Connected to %s:%d\n", clientSocket.getLocalAddress().getHostAddress(), clientSocket.getLocalPort());
 
-            MsgReceiver msgReceiver = new MsgReceiver(clientSocket);
-            Thread receiverThread = new Thread(msgReceiver);
-            receiverThread.start();
-
-            MsgSender msgSender = new MsgSender(clientSocket);
-            Thread senderThread = new Thread(msgSender);
-            senderThread.start();
-
-            receiverThread.join();
-            senderThread.interrupt();
-            senderThread.join();
-
-            System.out.println("Disconnecting...");
-            clientSocket.close();
+            CommunicationMgr.run(clientSocket);
         }
     }
 }

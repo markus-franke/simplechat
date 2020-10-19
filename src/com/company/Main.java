@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.IOException;
+
 public class Main {
 
     private static void usage() {
@@ -28,7 +30,12 @@ public class Main {
                         try {
                             int port = Integer.parseInt(endpoint[1]);
                             Client client = new Client(endpoint[0], port);
-                            client.run();
+                            try {
+                                client.run();
+                            } catch (IOException e) {
+                                System.out.println("Unable to connect to server.");
+                                e.printStackTrace();
+                            }
                             break;
                         } catch (NumberFormatException e) {
                             System.out.println("Got invalid port number " + endpoint[1]);

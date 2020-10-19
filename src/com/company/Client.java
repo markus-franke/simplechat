@@ -13,29 +13,10 @@ public class Client {
         System.out.println("Running in client mode...");
     }
 
-    public void run() {
+    public void run() throws IOException {
         System.out.printf("Connecting to %s:%d...\n", ip, port);
-        try {
-            Socket socket = new Socket(ip, port);
-            System.out.println("Connected");
-
-            MsgSender msgSender = new MsgSender(socket);
-            Thread senderThread = new Thread(msgSender);
-            senderThread.start();
-
-            MsgReceiver msgReceiver = new MsgReceiver(socket);
-            Thread receiverThread = new Thread(msgReceiver);
-            receiverThread.start();
-
-            receiverThread.join();
-            senderThread.interrupt();
-            senderThread.join();
-
-            System.out.println("Disconnecting...");
-
-            socket.close();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        Socket socket = new Socket(ip, port);
+        System.out.println("Connected");
+        CommunicationMgr.run(socket);
     }
 }

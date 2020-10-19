@@ -20,12 +20,7 @@ public class MsgReceiver implements Runnable {
                 int bytesRead = inputStream.read(buffer);
                 if (bytesRead != -1) {
                     String incomingMessage = new String(buffer, 0, bytesRead);
-
-                    if (incomingMessage.equals(Constants.QUIT_COMMAND)) {
-                        break;
-                    } else {
-                        System.out.printf("< %s\n", incomingMessage);
-                    }
+                    System.out.printf("< %s\n", incomingMessage);
                 } else {
                     break;
                 }

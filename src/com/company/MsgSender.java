@@ -32,13 +32,12 @@ public class MsgSender implements Runnable {
                     }
                 }
                 if (doCancel) break;
-                
+
                 line = bufferedReader.readLine();
-                if (line.isEmpty()) {
-                    line = Constants.QUIT_COMMAND;
+                if (!line.isEmpty()) {
+                    outputStream.write(line.getBytes());
                 }
-                outputStream.write(line.getBytes());
-            } while (!line.equals(Constants.QUIT_COMMAND));
+            } while (!line.isEmpty());
             outputStream.close();
         } catch (IOException e) {
             if (!socket.isClosed()) {

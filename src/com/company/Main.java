@@ -19,8 +19,8 @@ public class Main {
                 try {
                     server.run();
                 } catch (Exception e) {
-                    e.printStackTrace();
                     System.out.println("Unable to run server mode.");
+                    e.printStackTrace();
                 }
             }
             case 2 -> {

@@ -4,7 +4,9 @@ Simple peer2peer chat application
 
 ## Build
 
-Requires at least JDK 14.
+Set path to your local JDK installation (at least JDK 14) within the file [build.properties](build.properties)
+
+Run "ant" to build the project.
 
 ## Run
 

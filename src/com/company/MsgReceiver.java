@@ -19,7 +19,7 @@ public class MsgReceiver implements Runnable {
             do {
                 int bytesRead = inputStream.read(buffer);
                 if (bytesRead != -1) {
-                    String incomingMessage = new String(buffer, 0, bytesRead);
+                    String incomingMessage = new String(buffer, 0, bytesRead, Constants.DEFAULT_CHARSET);
                     System.out.printf("< %s\n", incomingMessage);
                 } else {
                     break;

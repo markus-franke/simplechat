@@ -18,7 +18,7 @@ public class MsgSender implements Runnable {
     public void run() {
         try {
             OutputStream outputStream = socket.getOutputStream();
-            String line = "";
+            String outgoingMessage = "";
             do {
                 System.out.print("> ");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -33,11 +33,11 @@ public class MsgSender implements Runnable {
                 }
                 if (doCancel) break;
 
-                line = bufferedReader.readLine();
-                if (!line.isEmpty()) {
-                    outputStream.write(line.getBytes());
+                outgoingMessage = new String(bufferedReader.readLine().getBytes(), Constants.DEFAULT_CHARSET);
+                if (!outgoingMessage.isEmpty()) {
+                    outputStream.write(outgoingMessage.getBytes());
                 }
-            } while (!line.isEmpty());
+            } while (!outgoingMessage.isEmpty());
             outputStream.close();
         } catch (IOException e) {
             if (!socket.isClosed()) {

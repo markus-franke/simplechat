@@ -28,7 +28,8 @@ public class MsgReceiver implements Runnable {
             inputStream.close();
         } catch (IOException e) {
             if (!socket.isClosed()) {
-                e.printStackTrace();
+                Thread currentThread = Thread.currentThread();
+                currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, e);
             }
         }
 

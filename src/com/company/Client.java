@@ -13,10 +13,11 @@ public class Client {
         System.out.println("Running in client mode...");
     }
 
-    public void run() throws IOException {
+    public void run() throws IOException, InterruptedException {
         System.out.printf("Connecting to %s:%d...\n", ip, port);
-        Socket socket = new Socket(ip, port);
-        System.out.println("Connected");
-        CommunicationMgr.run(socket);
+        try (Socket socket = new Socket(ip, port)) {
+            System.out.println("Connected");
+            CommunicationMgr.run(socket);
+        }
     }
 }

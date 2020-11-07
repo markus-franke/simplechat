@@ -1,12 +1,19 @@
 package com.company;
 
-import java.io.IOException;
-
 public class Main {
 
-    private static void usage() {
+    private static void handleMisusage() {
         System.out.printf("Usage: SimpleChat [%s <IP>:<Port>]\n", Constants.INSTANCE_PARAM);
+        exitCode = -1;
     }
+
+    private static void handleFatalException(Exception e, String message) {
+        System.out.println(message);
+        e.printStackTrace();
+        exitCode = -1;
+    }
+
+    private static int exitCode = 0;
 
     public static void main(String[] args) {
         // NOTE: Very basic cmdline parsing.
@@ -19,8 +26,7 @@ public class Main {
                 try {
                     server.run();
                 } catch (Exception e) {
-                    System.out.println("Unable to run server mode.");
-                    e.printStackTrace();
+                    handleFatalException(e, "Unable to run server mode.");
                 }
             }
             case 2 -> {
@@ -32,19 +38,22 @@ public class Main {
                             Client client = new Client(endpoint[0], port);
                             try {
                                 client.run();
-                            } catch (IOException e) {
-                                System.out.println("Unable to connect to server.");
-                                e.printStackTrace();
+                            } catch (Exception e) {
+                                handleFatalException(e, "Error while communicating to server.");
                             }
-                            break;
                         } catch (NumberFormatException e) {
-                            System.out.println("Got invalid port number " + endpoint[1]);
+                            handleFatalException(e, "Got invalid port number " + endpoint[1]);
                         }
                     }
+                } else {
+                    handleMisusage();
                 }
-                usage();
             }
-            default -> usage();
+            default -> {
+                handleMisusage();
+            }
         }
+
+        System.exit(exitCode);
     }
 }

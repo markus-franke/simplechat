@@ -41,7 +41,8 @@ public class MsgSender implements Runnable {
             outputStream.close();
         } catch (IOException e) {
             if (!socket.isClosed()) {
-                e.printStackTrace();
+                Thread currentThread = Thread.currentThread();
+                currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, e);
             }
         }
 

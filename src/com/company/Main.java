@@ -21,15 +21,15 @@ public class Main {
         // http://commons.apache.org/cli/ or
         // http://argparse4j.github.io/
         switch (args.length) {
-            case 0 -> {
+            case 0:
                 Server server = new Server();
                 try {
                     server.run();
                 } catch (Exception e) {
                     handleFatalException(e, "Unable to run server mode.");
                 }
-            }
-            case 2 -> {
+                break;
+            case 2:
                 if (args[0].equals(Constants.INSTANCE_PARAM)) {
                     String[] endpoint = args[1].split(":");
                     if (endpoint.length == 2) {
@@ -48,10 +48,10 @@ public class Main {
                 } else {
                     handleMisusage();
                 }
-            }
-            default -> {
-                handleMisusage();
-            }
+                break;
+            default:
+            	handleMisusage();
+            	break;
         }
 
         System.exit(exitCode);
